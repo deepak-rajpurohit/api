@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Student;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Validator;
 class StudentController extends Controller
 {
     //
@@ -12,16 +12,36 @@ class StudentController extends Controller
     }
 
     function addStudent(Request $request){
-        $student = new Student();
+        // $student = new Student();
+        // $student->name=$request->name;
+        // $student->email=$request->email;
+        // $student->phone=$request->phone;
+        // if($student->save()){
+        //     return ["result"=>"Student add"];
+        // }else{
+        //     return ["result"=>"failed"];
+        // }
+
+        $rules = array(
+            'name'=>'required | min:2 | max:10',
+            'email'=> 'email | required',
+            'phone'=> "required"
+        );
+        $validation = Validator::make($request->all(), $rules);
+        if($validation->fails()){
+            return$validation->errors();
+        }else{
+               $student = new Student();
         $student->name=$request->name;
         $student->email=$request->email;
         $student->phone=$request->phone;
         if($student->save()){
-            return ["result"=>"Student adde"];
+            return ["result"=>"Student add"];
         }else{
             return ["result"=>"failed"];
         }
     }
+}
 
         function updateStudent(Request $request){
             $student=Student::find($request->id);
