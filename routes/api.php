@@ -15,3 +15,6 @@ Route::get("/test",function(){
 Route::get('list',[StudentController::class,'list']);
 Route::post('add',[StudentController::class,'addStudent']);
 Route::put('update',[StudentController::class,'updateStudent']);
+Route::patch('update/{id}',[StudentController::class,'updateStudent']);
+
+Route::delete('delete/{id}',[StudentController::class,'deleteStudent']);
