@@ -22,7 +22,7 @@ class StudentController extends Controller
         //     return ["result"=>"failed"];
         // }
 
-        $rules = array(
+        $rules = array(                      //for validation
             'name'=>'required | min:2 | max:10',
             'email'=> 'email | required',
             'phone'=> "required"
