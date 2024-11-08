@@ -14,3 +14,4 @@ Route::get("/test",function(){
 
 Route::get('list',[StudentController::class,'list']);
 Route::post('add',[StudentController::class,'addStudent']);
+Route::put('update',[StudentController::class,'updateStudent']);

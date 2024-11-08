@@ -23,5 +23,17 @@ class StudentController extends Controller
         }
     }
 
+        function updateStudent(Request $request){
+            $student=Student::find($request->id);
+            $student->name=$request->name;
+            $student->email=$request->email;
+            $student->phone=$request->phone;
+
+            if($student->save()){
+                return["result"=>"student data updated"];
+            }else{
+                return["result"=>"student not updated"];
+            }
+        }
 
 }
