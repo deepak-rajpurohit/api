@@ -18,3 +18,4 @@ Route::put('update',[StudentController::class,'updateStudent']);
 Route::patch('update/{id}',[StudentController::class,'updateStudent']);
 
 Route::delete('delete/{id}',[StudentController::class,'deleteStudent']);
+Route::get('search/{name}',[StudentController::class,'searchStudent']);
