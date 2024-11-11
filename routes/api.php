@@ -14,13 +14,17 @@ Route::get("/test",function(){
     return ["name"=>"Deepak", "email"=>"deepak@email.com", "phone"=>"998877"];
 });
 
-Route::get('list',[StudentController::class,'list']);
-Route::post('add',[StudentController::class,'addStudent']);
-Route::put('update',[StudentController::class,'updateStudent']);
-Route::patch('update/{id}',[StudentController::class,'updateStudent']);
 
-Route::delete('delete/{id}',[StudentController::class,'deleteStudent']);
-Route::get('search/{name}',[StudentController::class,'searchStudent']);
+Route::group(['middleware'=>"auth:sanctum"],function(){
+    Route::get('list',[StudentController::class,'list']);
+    Route::post('add',[StudentController::class,'addStudent']);
+    Route::put('update',[StudentController::class,'updateStudent']);
+    Route::patch('update/{id}',[StudentController::class,'updateStudent']);
+
+    Route::delete('delete/{id}',[StudentController::class,'deleteStudent']);
+    Route::get('search/{name}',[StudentController::class,'searchStudent']);
+});
+
 
 Route::resource('member', memberController::class);
 Route::post('signup',[UserAuthController::class,'signUp']);
